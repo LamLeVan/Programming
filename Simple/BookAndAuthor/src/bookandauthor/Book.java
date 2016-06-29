@@ -11,21 +11,24 @@ package bookandauthor;
  */
 public class Book {
 
+    @SuppressWarnings("FieldMayBeFinal")
     private String name;
-    private Author author;
+    @SuppressWarnings("FieldMayBeFinal")
+    private Author[] authors;
     private double price;
     private int qty;
 
-    public Book(String name, Author author, double price) {
+    public Book(String name, Author[] authors, double price) {
         this.name = name;
-        this.author = author;
+        this.authors = authors;
         this.price = price;
         this.qty = 0;
     }
 
-    public Book(String name, Author author, double price, int qty) {
+    @SuppressWarnings("SillyAssignment")
+    public Book(String name, Author[] author, double price, int qty) {
         this.name = name;
-        this.author = author;
+        this.authors = authors;
         this.price = price;
         this.qty = qty;
     }
@@ -34,8 +37,8 @@ public class Book {
         return this.name;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Author[] getAuthors() {
+        return authors;
     }
    
     public double getPrice() {
@@ -53,11 +56,19 @@ public class Book {
     public void setQty(int qty) {    
         this.qty = qty;
     }
+    
+    public String getAuthorNammes() {
+        String names = "";
+        for (Author author : this.getAuthors()) {
+            names = names + author;
+        }
+        return names;
+    }
 
     @Override
     public String toString() {
         return "Book[name=" + this.getName()
-                + " " + this.getAuthor().toString()
+                + "names= " + this.getAuthorNammes()
                 + ", price=" + this.getPrice()
                 + ", qty=" + this.getQty();
     }
