@@ -62,4 +62,14 @@ public class Account {
         }
         return another.getBalance();
     }
+
+    @Override
+    public String toString() {
+        return "Account["
+                + "id = " + this.getID()
+                + " balance = " + this.getBalance()
+                + "]"; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
