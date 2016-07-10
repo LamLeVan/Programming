@@ -1,2 +1,0 @@
-bookandauthor.Gender
-bookandauthor.Author
