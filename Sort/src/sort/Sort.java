@@ -17,10 +17,9 @@ public class Sort {
         // TODO code application logic here     
         int a[] = {32, 17, 49, 98, 6, 25, 53, 61};
 //        selectionSort(a);
-//        System.out.println(Arrays.toString(a));
 //        insertionSort(a);
-//        System.out.println(Arrays.toString(a));
-        bubleSort(a);
+//        bubleSort(a);
+        quick(0, a.length - 1, a);
         System.out.println(Arrays.toString(a));
     }
 
@@ -52,22 +51,47 @@ public class Sort {
             a[j + 1] = temp;
         }
     }
-    
+
     private static void bubleSort(int[] a) {
         int i, j, temp;
         boolean noExchange;
         i = 1;
         do {
-            noExchange = false ;
-            for (j = a.length -1; j >= i; j--) {
+            noExchange = false;
+            for (j = a.length - 1; j >= i; j--) {
                 if (a[j - 1] > a[j]) {
                     temp = a[j - 1];
-                    a [j - 1] = a[j];
+                    a[j - 1] = a[j];
                     a[j] = temp;
                     noExchange = true;
                 }
             }
             i++;
         } while ((i == a.length - 1) || (noExchange));
+    }
+
+    private static void quick(int left, int right, int[] a) {
+        int i = left, j = right, temp, origin = a[left];
+        while (i <= j) {
+            while ((a[i + 1] < origin) && i < right) {
+                i++;
+            }
+            while ((a[j] > origin) && j > left) {
+                j--;
+            }
+            if (i < j) {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        if (left < j) {
+            quick(left, j, a);
+        }
+        if (i < right) {
+            quick(i, right, a);
+        }
     }
 }
